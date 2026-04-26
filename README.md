@@ -65,6 +65,10 @@ ________________________________________
 🔹 Open in Browser
 
 http://127.0.0.1:8000/
+
+For accessing the administration portal:
+
+http://127.0.0.1:8000/admin    
 ________________________________________
 📸 Application Flow
 
