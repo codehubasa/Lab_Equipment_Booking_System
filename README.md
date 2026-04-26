@@ -10,6 +10,7 @@
 
  <img width="1906" height="861" alt="Screenshot 2026-04-26 194134" src="https://github.com/user-attachments/assets/58d9ec90-b71a-4858-b745-c18b4bfe8690" />
 
+<img width="1909" height="852" alt="Screenshot 2026-04-26 194249" src="https://github.com/user-attachments/assets/1e5fe539-3500-4f2d-b52a-d5310d90752b" />
 
  Lab Equipment Booking System 
 ________________________________________
