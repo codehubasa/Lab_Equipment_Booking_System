@@ -21,30 +21,83 @@ ________________________________________
 
 ✨ Overview
 
-The Lab Equipment Booking System is a full-stack web application designed to simplify and automate the process of booking lab resources.
-It allows users to:
+The Lab Equipment Booking System is a full-stack web application designed to simplify and automate the process of booking lab resources. It allows users to:
 
-•	📅 Book lab equipment
+• 📅 Book lab equipment
 
-•	📊 View booking history
+• 📊 View booking history
 
-•	✅ Get instant confirmation
+• ✅ Get instant confirmation
 
-This project demonstrates end-to-end web development using Django with dynamic data handling and clean UI design.
+• 🔐 Role-based secure access (Student / Teacher / Admin)
+
+• 📦 Manage inventory and returns efficiently
+
+This project demonstrates end-to-end web development using Django with dynamic data handling, role-based authentication, and scalable system design.
 ________________________________________
 🎯 Key Features
 
-•	🏠 Home Page Navigation
+• 🏠 Home Page Navigation
 
-•	📝 Dynamic Booking Form
+• 📝 Dynamic Booking Form
 
-•	✅ Instant Booking Confirmation
+• ✅ Instant Booking Confirmation
 
-•	📊 Real-Time Booking History
+• 📊 Real-Time Booking History
 
-•	💾 Database Integration (SQLite)
+• 💾 Database Integration (SQLite)
 
-•	🎨 Modern UI (Embedded CSS - No External Files)
+• 🎨 Modern UI (Embedded CSS - No External Files)
+
+🚀 Advanced Features
+
+• 🔐 Robust Authentication & Role Management
+
+Secure login system using Django User model
+
+Roles: Student, Teacher, Admin / Lab Assistant
+
+Permission-based access control
+
+• 🔄 Booking Approval Workflow
+
+Booking status: Pending, Approved, Rejected, Returned
+
+Admin/Teacher approval system via dashboard
+
+• 📦 Inventory Management & Return System
+
+Automatic stock reduction on booking
+
+Return tracking with stock restoration
+
+Overbooking prevention system
+
+• 📅 Calendar & Scheduling View
+
+Visual scheduling using calendar interface
+
+Weekly availability view for labs & equipment
+
+📊 Admin Dashboard & Analytics
+
+Most booked equipment insights
+
+Pending approvals tracking
+
+Overdue return monitoring
+
+• 🔍 Search & Pagination
+
+Global search bar (e.g., “Multimeter”, “Beaker”)
+
+Optimized pagination for large datasets
+
+• 📱 QR Code Integration
+
+QR code for each equipment
+
+Direct booking via scan
 ________________________________________
 🛠️ Tech Stack
 
@@ -90,37 +143,47 @@ http://127.0.0.1:8000/admin
 ________________________________________
 📸 Application Flow
 
-1.	🏠 Home Page
-2.	➡️ Navigate to Booking
-3.	📝 Fill Form
-4.	✅ Booking Success
-5.	📊 View History
+🏠 Home Page
+
+
+➡️ Navigate to Booking
+📝 Fill Form
+
+⏳ Booking Pending Approval
+
+✅ Approval/Rejection Notification
+
+📊 View History & Status
+
+📦 Return Equipment
+
+📅 View Schedule / Calendar
 ________________________________________
 🚀 Future Enhancements
 
-•	🔐 User Authentication (Login/Register)
+• 🤖 AI-based demand prediction for equipment
 
-•	📅 Slot Availability System
+• 📱 Mobile app integration
 
-•	📧 Email Notifications
-
-•	🧾 PDF Booking Receipts
-
-•	📊 Admin Dashboard Analytics
+• 🔔 Real-time notifications (WebSockets)
 ________________________________________
 💡 Learning Outcomes
 
-•	Django Project Architecture
+• Django Project Architecture
 
-•	CRUD Operations
+• Authentication & Role-Based Access Control
 
-•	Template Rendering
+• CRUD Operations
 
-•	Form Handling
+• Template Rendering
 
-•	Database Integration
+• Form Handling
 
-•	Debugging Real-world Issues
+• Database & Inventory Management
+
+• Real-world Workflow Implementation
+
+• Debugging & System Design
 ________________________________________
 👩‍💻 Author
 
