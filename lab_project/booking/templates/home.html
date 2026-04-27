@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equipment List</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0b1220, #1e293b, #2f3e52);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* 🔵 Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0b1220; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            border-radius: 10px;
+        }
+
+        /* 🔥 Background blobs */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.35;
+            animation: float 12s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        .blob1 { width:400px;height:400px;background:#2563eb;top:-100px;left:-100px; }
+        .blob2 { width:300px;height:300px;background:#0ea5e9;bottom:-100px;right:-80px;animation-delay:3s; }
+        .blob3 { width:250px;height:250px;background:#1d4ed8;top:50%;left:60%;transform:translate(-50%,-50%);animation-delay:6s; }
+
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 💎 Cards */
+        .card {
+            border-radius: 18px;
+            backdrop-filter: blur(18px);
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: 0.3s;
+            color: #e2e8f0;
+            position: relative;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            padding: 1px;
+            background: linear-gradient(135deg, #2563eb, #0ea5e9);
+            pointer-events: none;
+            -webkit-mask:
+                linear-gradient(#000 0 0) content-box,
+                linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+        }
+
+        h3 {
+            color: #38bdf8;
+        }
+
+        /* 🔘 Buttons */
+        .btn {
+            border-radius: 10px;
+        }
+
+        .btn-primary { background: linear-gradient(135deg, #1d4ed8, #3b82f6); border: none; }
+        .btn-success { background: linear-gradient(135deg, #16a34a, #22c55e); border: none; }
+        .btn-danger { background: linear-gradient(135deg, #dc2626, #ef4444); border: none; }
+        .btn-info { background: linear-gradient(135deg, #0284c7, #38bdf8); border: none; color: white;}
+        .btn-warning { background: linear-gradient(135deg, #f59e0b, #fbbf24); border: none; color: black;}
+        .btn-secondary { background: linear-gradient(135deg, #475569, #64748b); border: none; }
+        
+        .active {
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(59,130,246,0.8);
+        }
+
+        /* 📜 Rules banner */
+        .rules-banner {
+            background: rgba(255,255,255,0.08);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #cbd5e1;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* 👨‍🔬 Assistant box */
+        .bg-white-trans {
+            background: rgba(255,255,255,0.1) !important;
+            color: #e2e8f0;
+        }
+
+        /* 🔔 Alert fix */
+        .alert-warning {
+            background: rgba(37, 99, 235, 0.15) !important;
+            color: #bfdbfe !important;
+            border: 1px solid rgba(59,130,246,0.4) !important;
+        }
+
+        /* ⏰ Free time */
+        .free-time {
+            font-size: 14px;
+            background: rgba(255,255,255,0.1);
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: inline-block;
+            color: #cbd5e1;
+        }
+        
+        .page-link {
+            background-color: rgba(255,255,255,0.1);
+            color: #e2e8f0;
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .page-item.active .page-link {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+
+        .text-white { color: #f1f5f9 !important; }
+        
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🔥 Background -->
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<div class="container mt-4 pb-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="text-white">🔬 Lab Equipment</h3>
+
+        <div>
+            <a href="{% url 'calendar' %}" class="btn btn-info me-2">📅 Calendar</a>
+            <a href="{% url 'history' %}" class="btn btn-secondary me-2">📜 History</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger">🚪 Logout</a>
+        </div>
+    </div>
+
+    <div class="rules-banner">
+        ⚠️ Please follow all lab rules before booking equipment
+    </div>
+
+
+
+    {% for message in messages %}
+        <div class="alert alert-warning text-center">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="text-center mb-3">
+        <a href="{% url 'book_lab' %}" class="btn btn-success">
+            🏫 Book Full Lab (Teacher Only)
+        </a>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-6">
+            <form method="GET" action="{% url 'home' %}" class="d-flex">
+                <input type="text" name="q" value="{{ q }}" class="form-control me-2 text-dark" placeholder="Search equipment by name...">
+                {% if category %}
+                    <input type="hidden" name="category" value="{{ category }}">
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mb-4">
+        <a href="?category=physics{% if q %}&q={{ q }}{% endif %}" class="btn btn-outline-primary {% if category == 'physics' %}active{% endif %}">Physics</a>
+        <a href="?category=chemistry{% if q %}&q={{ q }}{% endif %}" class="btn btn-outline-success {% if category == 'chemistry' %}active{% endif %}">Chemistry</a>
+        <a href="?category=biology{% if q %}&q={{ q }}{% endif %}" class="btn btn-outline-danger {% if category == 'biology' %}active{% endif %}">Biology</a>
+        <a href="?category=computer{% if q %}&q={{ q }}{% endif %}" class="btn btn-outline-info text-white {% if category == 'computer' %}active{% endif %}">Computer</a>
+        <a href="?category=geography{% if q %}&q={{ q }}{% endif %}" class="btn btn-outline-warning text-white {% if category == 'geography' %}active{% endif %}">Geography</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">All</a>
+    </div>
+
+    <div class="row">
+        {% for i in page_obj %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow h-100 p-3 text-center">
+                <h5>🔬 {{ i.name }}</h5>
+                <p><b>Category:</b> {{ i.category|title }}</p>
+
+                {% if i.available > 0 %}
+                    <p class="text-success fw-bold">
+                        🟢 Available: {{ i.available }}
+                    </p>
+                    <a href="{% url 'book_equipment' i.id %}" class="btn btn-primary w-100 mb-2">
+                        Book Now
+                    </a>
+                {% else %}
+                    <p class="text-danger fw-bold">
+                        🔴 Fully Booked
+                    </p>
+                    {% if i.free_time %}
+                        <div class="free-time mt-2 mb-2">
+                            ⏰ Free after {{ i.free_time }}
+                        </div>
+                    {% endif %}
+                    <button class="btn btn-danger w-100 mt-2 mb-2" disabled>
+                        Not Available
+                    </button>
+                {% endif %}
+                
+                <button class="btn btn-outline-light w-100 btn-sm" onclick="showQR('{{ request.scheme }}://{{ request.get_host }}{% url 'book_equipment' i.id %}', '{{ i.name }}')">📷 Show QR Code</button>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-white">
+            <p>No equipment found.</p>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Pagination -->
+    {% if page_obj.has_other_pages %}
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&laquo;</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %}
+            
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}{% if q %}&q={{ q }}{% endif %}{% if category %}&category={{ category }}{% endif %}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}{% if category %}&category={{ category }}{% endif %}">&raquo;</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+</div>
+
+<!-- QR Code Modal -->
+<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white border-primary">
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title" id="qrModalLabel">Booking QR Code</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="mb-3">Scan perfectly to book <strong id="qrItemName"></strong>!</p>
+        <div id="qrcode" class="bg-white p-3 d-inline-block rounded"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    let qrWidget = null;
+    function showQR(url, name) {
+        document.getElementById('qrItemName').innerText = name;
+        const qrContainer = document.getElementById('qrcode');
+        qrContainer.innerHTML = ""; // Clear existing
+        qrWidget = new QRCode(qrContainer, {
+            text: url,
+            width: 200,
+            height: 200,
+        });
+        var myModal = new bootstrap.Modal(document.getElementById('qrModal'));
+        myModal.show();
+    }
+</script>
+
+</body>
+</html>
