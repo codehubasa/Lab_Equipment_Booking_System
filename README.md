@@ -140,6 +140,10 @@ http://127.0.0.1:8000/
 For accessing the administration portal:
 
 http://127.0.0.1:8000/admin    
+
+My full deployed and working Lab Equipment Booking Website
+
+https://smartlabbooking.pythonanywhere.com/
 ________________________________________
 📸 Application Flow
 
