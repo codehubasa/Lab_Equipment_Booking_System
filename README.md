@@ -2,8 +2,6 @@
 <hr style="border: 2px solid #555; margin: 30px 0;">
 <img width="1889" height="853" alt="Screenshot 2026-04-27 110026" src="https://github.com/user-attachments/assets/190de3f1-30c8-4196-9cfd-cb0f31ed9d7b" />
 <hr style="border: 2px solid #555; margin: 30px 0;">
-<img width="1888" height="853" alt="Screenshot 2026-04-27 104729" src="https://github.com/user-attachments/assets/088fd780-6a5b-4566-822b-97b39818227e" />
-<hr style="border: 2px solid #555; margin: 30px 0;">
 <img width="1890" height="857" alt="Screenshot 2026-04-26 193741" src="https://github.com/user-attachments/assets/8cdbdae9-7409-46dd-80a9-57e7ba337908" />
 <hr style="border: 2px solid #555; margin: 30px 0;">
  <img width="1910" height="854" alt="Screenshot 2026-04-26 193907" src="https://github.com/user-attachments/assets/ab0dfc66-e224-4a2e-bf9f-12c3f7254b10" />
