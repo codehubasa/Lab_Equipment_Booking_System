@@ -14,7 +14,7 @@
 <hr style="border: 2px solid #555; margin: 30px 0;">
 <img width="1891" height="853" alt="Screenshot 2026-04-27 105036" src="https://github.com/user-attachments/assets/f7b17fae-2b63-4b05-af29-8d96bdb1ba41" />
 
- Lab Equipment Booking System 
+ Lab Equipment Booking 
 ________________________________________
 
 ✨ Overview
